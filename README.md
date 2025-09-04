@@ -2,9 +2,9 @@
 
 Streamlining government services with AI. Our Smart India Hackathon project enhances efficiency and accessibility for citizens. Built with passion and innovation.
 
-Problem Statement Title	
+Problem Statement Title:
 Centralised Digital Platform for Comprehensive student activity record in HEIs
-Description	
+Description:
 Background:
 Despite increasing digitization in education, student achievements ranging from academic excellence to participation in curricular and extracurricular activities remain scattered across various departments or lost in paper-based records, in many colleges and universities. There is no centralized digital platform that enables institutions to document, track, and showcase a student's complete profile, including:
 - Conferences and workshops attended
