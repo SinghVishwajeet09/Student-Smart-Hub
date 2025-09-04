@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Student Hub - Centralized Activity Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="landing-page">
+    <!-- <div id="headerComponent"></div> -->
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Smart Student Hub</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                    <a href="#about">About</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <button class="btn btn-outline" onclick="showLoginModal()">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <button class="btn btn-primary" onclick="showRegisterModal()">
+                        <i class="fas fa-user-plus"></i> Sign Up
+                    </button>
+                </div>
+                <div class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-particles"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title fade-in-up">
+                        Your Digital Activity
+                        <span class="gradient-text">Portfolio</span>
+                    </h1>
+                    <p class="hero-description fade-in-up delay-1">
+                        Centralize, verify, and showcase your academic and extracurricular achievements 
+                        with India's most comprehensive student activity platform.
+                    </p>
+                    <div class="hero-stats fade-in-up delay-2">
+                        <div class="stat">
+                            <span class="stat-number">50,000+</span>
+                            <span class="stat-label">Students</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Institutions</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1M+</span>
+                            <span class="stat-label">Activities Verified</span>
+                        </div>
+                    </div>
+                    <div class="hero-actions fade-in-up delay-3">
+                        <button class="btn btn-primary btn-large" onclick="showRegisterModal()">
+                            <i class="fas fa-rocket"></i> Get Started Free
+                        </button>
+                        <button class="btn btn-outline btn-large" onclick="scrollToSection('demo')">
+                            <i class="fas fa-play"></i> Watch Demo
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-visual fade-in-up delay-1">
+                    <div class="dashboard-preview">
+                        <div class="preview-header">
+                            <div class="preview-dots">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="preview-content">
+                            <div class="preview-card">
+                                <i class="fas fa-certificate"></i>
+                                <h4>Digital Certificates</h4>
+                            </div>
+                            <div class="preview-card">
+                                <i class="fas fa-chart-line"></i>
+                                <h4>Analytics Dashboard</h4>
+                            </div>
+                            <div class="preview-card">
+                                <i class="fas fa-file-pdf"></i>
+                                <h4>PDF Portfolios</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Powerful Features for Modern Students</h2>
+                <p class="section-description">
+                    Everything you need to document, verify, and showcase your academic journey
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Blockchain Verification</h3>
+                    <p>Secure, tamper-proof verification system using blockchain technology for authentic credentials.</p>
+                </div>
+                <div class="feature-card fade-in-up delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>AI-Powered Insights</h3>
+                    <p>Get personalized recommendations and skill gap analysis powered by machine learning.</p>
+                </div>
+                <div class="feature-card fade-in-up delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile First</h3>
+                    <p>Access your portfolio anywhere, anytime with our responsive, mobile-optimized platform.</p>
+                </div>
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3>QR Code Portfolios</h3>
+                    <p>Generate instantly verifiable PDF portfolios with QR codes for easy sharing with employers.</p>
+                </div>
+                <div class="feature-card fade-in-up delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Advanced Analytics</h3>
+                    <p>Track your progress, compare with peers, and identify areas for improvement with detailed analytics.</p>
+                </div>
+                <div class="feature-card fade-in-up delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Institution Integration</h3>
+                    <p>Seamless integration with university systems for automatic activity verification and approval.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-description">Get started in three simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step fade-in-up">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Create Account</h3>
+                        <p>Sign up with your institutional email and verify your student status</p>
+                    </div>
+                </div>
+                <div class="step fade-in-up delay-1">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Add Activities</h3>
+                        <p>Upload your activities, achievements, and supporting documents for verification</p>
+                    </div>
+                </div>
+                <div class="step fade-in-up delay-2">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Generate Portfolio</h3>
+                        <p>Create verified digital portfolios to share with employers and educational institutions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content text-center">
+                <h2>Ready to Transform Your Student Journey?</h2>
+                <p>Join thousands of students already building their digital portfolios</p>
+                <div class="cta-actions">
+                    <button class="btn btn-primary btn-large" onclick="showRegisterModal()">
+                        Start Your Portfolio Today
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Smart Student Hub</span>
+                    </div>
+                    <p>Empowering students with digital portfolios for the future of education and employment.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Platform</h3>
+                    <ul>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="activities.html">Activities</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="analytics.html">Analytics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> support@smartstudenthub.in</li>
+                        <li><i class="fas fa-phone"></i> +91 1234 567 890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> New Delhi, India</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Smart Student Hub. All rights reserved. | Made with ❤️ for Indian Students</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Auth Modals -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Welcome Back</h2>
+                <button class="modal-close" onclick="hideLoginModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                </div>
+                <div class="form-group form-options">
+                    <label class="checkbox">
+                        <input type="checkbox" name="remember">
+                        <span class="checkmark"></span>
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+                <div class="auth-divider">
+                    <span>Don't have an account?</span>
+                    <button type="button" class="link-button" onclick="switchToRegister()">
+                        Sign up here
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Your Account</h2>
+                <button class="modal-close" onclick="hideRegisterModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="registerForm" class="auth-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="studentId">Student ID</label>
+                    <input type="text" id="studentId" name="studentId" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email Address</label>
+                    <input type="email" id="registerEmail" name="email" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" name="password" required minlength="8">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="institution">Institution</label>
+                    <select id="institution" name="institutionId">
+                        <option value="">Select your institution</option>
+                        <option value="1">IIT Delhi</option>
+                        <option value="2">IIT Mumbai</option>
+                        <option value="3">NIT Karnataka</option>
+                        <option value="3">Noida Institute of Engineering & Technology</option>
+                        <!-- More options will be loaded dynamically -->
+                    </select>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="department">Department</label>
+                        <input type="text" id="department" name="department" placeholder="e.g., Computer Science">
+                    </div>
+                    <div class="form-group">
+                        <label for="yearOfStudy">Year of Study</label>
+                        <select id="yearOfStudy" name="yearOfStudy">
+                            <option value="">Select year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                            <option value="5">5th Year</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox">
+                        <input type="checkbox" name="terms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+                <div class="auth-divider">
+                    <span>Already have an account?</span>
+                    <button type="button" class="link-button" onclick="switchToLogin()">
+                        Sign in here
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p id="loadingText">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/portfolio.js"></script>
+    <script src="js/activities.js"></script>
+
+    <script>
+        // Initialize landing page
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeLandingPage();
+            checkAuthStatus();
+            loadInstitutions();
+        });
+    </script>
+    <!-- <div id="footerComponent"></div>
+<div id="modalComponents"></div> -->
+</body>
+</html>

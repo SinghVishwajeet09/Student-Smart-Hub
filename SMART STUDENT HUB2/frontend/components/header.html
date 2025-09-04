@@ -1,0 +1,230 @@
+<!-- Header Component for Smart Student Hub -->
+<header class="dashboard-header">
+    <div class="container">
+        <div class="header-content">
+            <!-- Logo Section -->
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Smart Student Hub</span>
+            </div>
+
+            <!-- Main Navigation -->
+            <nav class="main-nav">
+                <ul>
+                    <li>
+                        <a href="dashboard.html" class="nav-link" data-page="dashboard">
+                            <i class="fas fa-home"></i> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="activities.html" class="nav-link" data-page="activities">
+                            <i class="fas fa-trophy"></i> Activities
+                        </a>
+                    </li>
+                    <li>
+                        <a href="portfolio.html" class="nav-link" data-page="portfolio">
+                            <i class="fas fa-file-alt"></i> Portfolio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html" class="nav-link" data-page="analytics">
+                            <i class="fas fa-chart-bar"></i> Analytics
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <!-- Search Box (Optional) -->
+                <div class="header-search" style="display: none;">
+                    <input type="text" placeholder="Search..." class="search-input">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+                <!-- Notifications -->
+                <div class="notification-icon" onclick="toggleNotifications()">
+                    <i class="fas fa-bell"></i>
+                    <span id="notificationBadge" class="notification-badge">0</span>
+                </div>
+
+                <!-- Quick Actions Dropdown -->
+                <div class="quick-actions-dropdown">
+                    <button class="btn btn-outline dropdown-toggle" onclick="toggleQuickActions()">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div id="quickActionsDropdown" class="dropdown-menu">
+                        <a href="#" onclick="showAddActivityModal()">
+                            <i class="fas fa-plus"></i> Add Activity
+                        </a>
+                        <a href="#" onclick="generatePortfolio()">
+                            <i class="fas fa-file-pdf"></i> Generate Portfolio
+                        </a>
+                        <a href="#" onclick="showProfileModal()">
+                            <i class="fas fa-user-edit"></i> Update Profile
+                        </a>
+                    </div>
+                </div>
+
+                <!-- User Menu -->
+                <div class="user-menu">
+                    <div class="user-avatar" onclick="toggleUserMenu()">
+                        <img id="userAvatar" src="https://via.placeholder.com/40" alt="User Avatar">
+                        <div class="user-info">
+                            <span id="userName">Student</span>
+                            <small id="userRole">Student</small>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div id="userDropdown" class="user-dropdown">
+                        <div class="dropdown-header">
+                            <div class="user-avatar-large">
+                                <img id="userAvatarLarge" src="https://via.placeholder.com/60" alt="User Avatar">
+                            </div>
+                            <div class="user-details">
+                                <h4 id="userFullName">Student Name</h4>
+                                <p id="userEmail">student@example.com</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" onclick="showProfileModal()">
+                            <i class="fas fa-user"></i> My Profile
+                        </a>
+                        <a href="#" onclick="showSettingsModal()">
+                            <i class="fas fa-cog"></i> Settings
+                        </a>
+                        <a href="#" onclick="showHelpModal()">
+                            <i class="fas fa-question-circle"></i> Help & Support
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" onclick="logout()" class="logout-link">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileNav" class="mobile-nav">
+            <div class="mobile-nav-header">
+                <div class="mobile-user-info">
+                    <img id="mobileUserAvatar" src="https://via.placeholder.com/50" alt="User Avatar">
+                    <div>
+                        <h4 id="mobileUserName">Student Name</h4>
+                        <p id="mobileUserEmail">student@example.com</p>
+                    </div>
+                </div>
+                <button class="mobile-nav-close" onclick="toggleMobileMenu()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="mobile-nav-links">
+                <a href="dashboard.html" class="mobile-nav-link" data-page="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </a>
+                <a href="activities.html" class="mobile-nav-link" data-page="activities">
+                    <i class="fas fa-trophy"></i> Activities
+                </a>
+                <a href="portfolio.html" class="mobile-nav-link" data-page="portfolio">
+                    <i class="fas fa-file-alt"></i> Portfolio
+                </a>
+                <a href="analytics.html" class="mobile-nav-link" data-page="analytics">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </a>
+                <div class="mobile-nav-divider"></div>
+                <a href="#" onclick="showProfileModal()" class="mobile-nav-link">
+                    <i class="fas fa-user"></i> My Profile
+                </a>
+                <a href="#" onclick="showSettingsModal()" class="mobile-nav-link">
+                    <i class="fas fa-cog"></i> Settings
+                </a>
+                <a href="#" onclick="logout()" class="mobile-nav-link logout-link">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- Header JavaScript -->
+<script>
+function toggleUserMenu() {
+    const dropdown = document.getElementById('userDropdown');
+    dropdown.classList.toggle('show');
+}
+
+function toggleQuickActions() {
+    const dropdown = document.getElementById('quickActionsDropdown');
+    dropdown.classList.toggle('show');
+}
+
+function toggleMobileMenu() {
+    const mobileNav = document.getElementById('mobileNav');
+    const body = document.body;
+    
+    mobileNav.classList.toggle('show');
+    body.classList.toggle('mobile-nav-open');
+}
+
+// Set active navigation based on current page
+function setActiveNavigation() {
+    const currentPage = window.location.pathname.split('/').pop().split('.')[0];
+    const navLinks = document.querySelectorAll('.nav-link, .mobile-nav-link');
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-page') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+    const userMenu = document.getElementById('userDropdown');
+    const quickActions = document.getElementById('quickActionsDropdown');
+    
+    if (userMenu && !event.target.closest('.user-menu')) {
+        userMenu.classList.remove('show');
+    }
+    
+    if (quickActions && !event.target.closest('.quick-actions-dropdown')) {
+        quickActions.classList.remove('show');
+    }
+});
+
+// Initialize header when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    setActiveNavigation();
+    loadUserData();
+});
+
+function loadUserData() {
+    const user = Utils.getCurrentUser();
+    if (user) {
+        document.getElementById('userName').textContent = user.firstName || 'Student';
+        document.getElementById('userFullName').textContent = `${user.firstName} ${user.lastName}` || 'Student Name';
+        document.getElementById('userEmail').textContent = user.email || 'student@example.com';
+        document.getElementById('userRole').textContent = user.role || 'Student';
+        
+        // Mobile elements
+        document.getElementById('mobileUserName').textContent = `${user.firstName} ${user.lastName}` || 'Student Name';
+        document.getElementById('mobileUserEmail').textContent = user.email || 'student@example.com';
+        
+        // Update avatars if available
+        if (user.profileImage) {
+            document.getElementById('userAvatar').src = user.profileImage;
+            document.getElementById('userAvatarLarge').src = user.profileImage;
+            document.getElementById('mobileUserAvatar').src = user.profileImage;
+        }
+    }
+}
+</script>

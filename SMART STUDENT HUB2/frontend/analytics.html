@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Smart Student Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dashboard-page">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Smart Student Hub</span>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="activities.html"><i class="fas fa-trophy"></i> Activities</a></li>
+                        <li><a href="portfolio.html"><i class="fas fa-file-alt"></i> Portfolio</a></li>
+                        <li><a href="analytics.html" class="active"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="notification-icon" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span id="notificationBadge" class="notification-badge">0</span>
+                    </div>
+                    <div class="user-menu">
+                        <div class="user-avatar" onclick="toggleUserMenu()">
+                            <img id="userAvatar" src="https://via.placeholder.com/40" alt="User Avatar">
+                            <span id="userName">Student</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div id="userDropdown" class="user-dropdown">
+                            <a href="#" onclick="showProfileModal()"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#" onclick="showSettingsModal()"><i class="fas fa-cog"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title-section">
+                        <h1><i class="fas fa-chart-bar"></i> Analytics Dashboard</h1>
+                        <p>Track your progress and gain insights from your activities</p>
+                    </div>
+                    <div class="page-actions">
+                        <select id="timeframeSelect" class="form-select" onchange="updateTimeframe(this.value)">
+                            <option value="6months">Last 6 Months</option>
+                            <option value="1year">Last Year</option>
+                            <option value="all">All Time</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activity Trends Chart -->
+            <section class="chart-section">
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3><i class="fas fa-line-chart"></i> Activity Trends</h3>
+                        <p>Your activity participation over time</p>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="activityTrendsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Grid -->
+            <div class="analytics-grid">
+                <!-- Category Distribution -->
+                <section class="chart-section">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-pie-chart"></i> Activity Distribution</h3>
+                            <p>Breakdown by category</p>
+                        </div>
+                        <div class="chart-container">
+                            <canvas id="categoryDistributionChart"></canvas>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Skills Analysis -->
+                <section class="chart-section">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3><i class="fas fa-brain"></i> Top Skills</h3>
+                            <p>Most frequently gained skills</p>
+                        </div>
+                        <div id="skillsContainer" class="skills-container">
+                            <!-- Skills will be loaded here -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Performance Metrics -->
+            <section class="performance-section">
+                <h2 class="section-title">Performance Metrics</h2>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3 id="approvalRate">0%</h3>
+                            <p>Approval Rate</p>
+                            <small>Activities approved on first submission</small>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3 id="avgDuration">0</h3>
+                            <p>Avg Duration</p>
+                            <small>Average hours per activity</small>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3 id="peerRanking">-</h3>
+                            <p>Peer Ranking</p>
+                            <small>Compared to institution average</small>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="metric-content">
+                            <h3 id="achievementScore">0</h3>
+                            <p>Achievement Score</p>
+                            <small>Based on activity quality and diversity</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Gap Analysis -->
+            <section class="skills-gap-section">
+                <div class="section-header">
+                    <h2 class="section-title">Skills Gap Analysis</h2>
+                    <button class="btn btn-outline" onclick="refreshSkillsGap()">
+                        <i class="fas fa-sync-alt"></i> Refresh Analysis
+                    </button>
+                </div>
+                <div id="skillsGapContainer" class="skills-gap-container">
+                    <!-- Skills gap analysis will be loaded here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p id="loadingText">Loading analytics...</p>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/analytics.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+        let activityTrendsChart, categoryChart;
+
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        function logout() {
+            authManager.logout();
+        }
+
+        function updateTimeframe(timeframe) {
+            loadAnalyticsData(timeframe);
+        }
+
+        async function refreshSkillsGap() {
+            try {
+                Utils.showLoading('Analyzing skills gap...');
+                const response = await Utils.makeRequest('/analytics/skills-gap');
+                renderSkillsGap(response);
+            } catch (error) {
+                NotificationManager.showNotification('Failed to refresh skills gap analysis', 'error');
+            } finally {
+                Utils.hideLoading();
+            }
+        }
+
+        function renderSkillsGap(data) {
+            const container = document.getElementById('skillsGapContainer');
+            
+            if (data.identifiedGaps.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Great! No significant skill gaps identified</h3>
+                        <p>Your current skill set appears well-rounded for your field</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="skills-gap-content">
+                    <div class="gap-summary">
+                        <h4>Skill Gap Summary</h4>
+                        <p>We've identified ${data.identifiedGaps.length} skill areas for improvement based on trends in your field.</p>
+                    </div>
+                    <div class="gaps-grid">
+                        ${data.identifiedGaps.map(gap => `
+                            <div class="gap-item priority-${gap.priority}">
+                                <div class="gap-header">
+                                    <h5>${gap.skill}</h5>
+                                    <span class="priority-badge priority-${gap.priority}">${gap.priority} priority</span>
+                                </div>
+                                <p class="gap-suggestion">${gap.suggestion}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        async function loadAnalyticsData(timeframe = '6months') {
+            try {
+                Utils.showLoading('Loading analytics data...');
+                
+                const response = await Utils.makeRequest(`/analytics/dashboard?timeframe=${timeframe}`);
+                
+                renderCharts(response);
+                updateMetrics(response.performanceMetrics);
+                
+            } catch (error) {
+                console.error('Failed to load analytics:', error);
+                NotificationManager.showNotification('Failed to load analytics data', 'error');
+            } finally {
+                Utils.hideLoading();
+            }
+        }
+
+        function renderCharts(data) {
+            // Destroy existing charts
+            if (activityTrendsChart) activityTrendsChart.destroy();
+            if (categoryChart) categoryChart.destroy();
+
+            // Activity Trends Chart
+            const trendsCtx = document.getElementById('activityTrendsChart').getContext('2d');
+            activityTrendsChart = new Chart(trendsCtx, {
+                type: 'line',
+                data: {
+                    labels: data.activityTrends.map(item => item.month),
+                    datasets: [{
+                        label: 'Activities',
+                        data: data.activityTrends.map(item => item.count),
+                        borderColor: '#4361ee',
+                        backgroundColor: 'rgba(67, 97, 238, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Category Distribution Chart
+            const categoryCtx = document.getElementById('categoryDistributionChart').getContext('2d');
+            categoryChart = new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.categoryDistribution.map(item => item.category),
+                    datasets: [{
+                        data: data.categoryDistribution.map(item => item.count),
+                        backgroundColor: [
+                            '#4361ee', '#f72585', '#4cc9f0', '#52b788', '#ffb800'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false
+                }
+            });
+
+            // Render skills
+            renderTopSkills(data.topSkills);
+        }
+
+        function renderTopSkills(skills) {
+            const container = document.getElementById('skillsContainer');
+            container.innerHTML = skills.map(skill => `
+                <div class="skill-item">
+                    <span class="skill-name">${skill.skill}</span>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: ${(skill.count / skills[0].count) * 100}%"></div>
+                    </div>
+                    <span class="skill-count">${skill.count}</span>
+                </div>
+            `).join('');
+        }
+
+        function updateMetrics(metrics) {
+            document.getElementById('approvalRate').textContent = Math.round(metrics.approval_rate || 0) + '%';
+            document.getElementById('avgDuration').textContent = Math.round(metrics.avg_duration || 0) + 'h';
+            document.getElementById('peerRanking').textContent = metrics.peer_ranking || '-';
+            document.getElementById('achievementScore').textContent = metrics.achievement_score || '0';
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            loadAnalyticsData();
+            refreshSkillsGap();
+        });
+
+        function checkAuthStatus() {
+            if (typeof authManager !== 'undefined') {
+                authManager.checkAuthStatus();
+            }
+        }
+    </script>
+</body>
+</html>

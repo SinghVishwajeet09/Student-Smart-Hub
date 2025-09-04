@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Smart Student Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="dashboard-page">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Smart Student Hub</span>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="activities.html"><i class="fas fa-trophy"></i> Activities</a></li>
+                        <li><a href="portfolio.html" class="active"><i class="fas fa-file-alt"></i> Portfolio</a></li>
+                        <li><a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="notification-icon" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span id="notificationBadge" class="notification-badge">0</span>
+                    </div>
+                    <div class="user-menu">
+                        <div class="user-avatar" onclick="toggleUserMenu()">
+                            <img id="userAvatar" src="https://via.placeholder.com/40" alt="User Avatar">
+                            <span id="userName">Student</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div id="userDropdown" class="user-dropdown">
+                            <a href="#" onclick="showProfileModal()"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#" onclick="showSettingsModal()"><i class="fas fa-cog"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title-section">
+                        <h1><i class="fas fa-file-alt"></i> Digital Portfolio</h1>
+                        <p>Generate and manage your verified activity portfolio</p>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-outline" onclick="previewPortfolio()">
+                            <i class="fas fa-eye"></i> Preview Portfolio
+                        </button>
+                        <button class="btn btn-primary" onclick="generatePortfolio()">
+                            <i class="fas fa-download"></i> Generate PDF Portfolio
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Preview Section -->
+            <section class="portfolio-preview-section">
+                <div class="portfolio-preview-card">
+                    <div class="portfolio-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Your Verified Digital Portfolio</h3>
+                        <p>Create a downloadable and shareable verified student portfolio in PDF format. Showcase your achievements to employers and higher education institutions with blockchain-verified credentials.</p>
+                        <div class="portfolio-features">
+                            <div class="feature-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Blockchain Verified</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-qrcode"></i>
+                                <span>QR Code Authentication</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Instantly Shareable</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio Statistics -->
+            <section class="portfolio-stats">
+                <h2 class="section-title">Portfolio Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="portfolioActivitiesCount">0</h3>
+                            <p>Approved Activities</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="portfolioHoursCount">0</h3>
+                            <p>Total Hours</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="portfolioPointsCount">0</h3>
+                            <p>Points Earned</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="portfolioSkillsCount">0</h3>
+                            <p>Skills Gained</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Portfolio History -->
+            <section class="portfolio-history-section">
+                <div class="section-header">
+                    <h2 class="section-title">Portfolio History</h2>
+                    <button class="btn btn-outline" onclick="refreshPortfolioHistory()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                <div id="portfolioHistory" class="portfolio-history">
+                    <!-- Portfolio history will be loaded here -->
+                    <div class="loading-placeholder">
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activity Categories Breakdown -->
+            <section class="categories-breakdown">
+                <h2 class="section-title">Activities by Category</h2>
+                <div id="categoriesChart" class="chart-container">
+                    <!-- Chart will be rendered here -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p id="loadingText">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/portfolio.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        function logout() {
+            authManager.logout();
+        }
+
+        function showProfileModal() {
+            console.log('Profile modal');
+        }
+
+        function showSettingsModal() {
+            console.log('Settings modal');
+        }
+
+        async function refreshPortfolioHistory() {
+            if (typeof portfolioManager !== 'undefined') {
+                await portfolioManager.loadPortfolioHistory();
+            }
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            loadPortfolioData();
+        });
+
+        function checkAuthStatus() {
+            if (typeof authManager !== 'undefined') {
+                authManager.checkAuthStatus();
+            }
+        }
+
+        async function loadPortfolioData() {
+            try {
+                const stats = await Utils.makeRequest('/activities/stats');
+                
+                document.getElementById('portfolioActivitiesCount').textContent = stats.approved_activities || 0;
+                document.getElementById('portfolioHoursCount').textContent = stats.total_hours || 0;
+                document.getElementById('portfolioPointsCount').textContent = stats.total_points || 0;
+                document.getElementById('portfolioSkillsCount').textContent = stats.unique_skills || 0;
+                
+            } catch (error) {
+                console.error('Failed to load portfolio data:', error);
+            }
+        }
+    </script>
+</body>
+</html>

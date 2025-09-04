@@ -1,0 +1,439 @@
+<!-- Modal Components for Smart Student Hub -->
+
+<!-- Profile Modal -->
+<div id="profileModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-user"></i> My Profile</h2>
+            <button class="modal-close" onclick="hideProfileModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="profileForm" class="profile-form">
+                <div class="profile-avatar-section">
+                    <div class="avatar-container">
+                        <img id="profileAvatar" src="https://via.placeholder.com/100" alt="Profile Avatar">
+                        <div class="avatar-overlay">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                    </div>
+                    <button type="button" class="btn btn-outline" onclick="document.getElementById('avatarUpload').click()">
+                        Change Photo
+                    </button>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="profileFirstName">First Name</label>
+                        <input type="text" id="profileFirstName" name="firstName" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileLastName">Last Name</label>
+                        <input type="text" id="profileLastName" name="lastName" class="form-input">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profileEmail">Email Address</label>
+                    <input type="email" id="profileEmail" name="email" class="form-input" readonly>
+                    <small>Email cannot be changed</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profileStudentId">Student ID</label>
+                    <input type="text" id="profileStudentId" name="studentId" class="form-input" readonly>
+                    <small>Student ID cannot be changed</small>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="profilePhone">Phone Number</label>
+                        <input type="tel" id="profilePhone" name="phone" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileDateOfBirth">Date of Birth</label>
+                        <input type="date" id="profileDateOfBirth" name="dateOfBirth" class="form-input">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profileAddress">Address</label>
+                    <textarea id="profileAddress" name="address" class="form-textarea"></textarea>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="profileDepartment">Department</label>
+                        <input type="text" id="profileDepartment" name="department" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="profileYear">Year of Study</label>
+                        <select id="profileYear" name="yearOfStudy" class="form-select">
+                            <option value="">Select year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                            <option value="5">5th Year</option>
+                            <option value="6">6th Year</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" onclick="hideProfileModal()">Cancel</button>
+            <button type="button" class="btn btn-primary" onclick="saveProfile()">Save Changes</button>
+        </div>
+    </div>
+</div>
+
+<!-- Settings Modal -->
+<div id="settingsModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-cog"></i> Settings</h2>
+            <button class="modal-close" onclick="hideSettingsModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="settings-tabs">
+                <div class="tab-nav">
+                    <button class="tab-btn active" onclick="showSettingsTab('general')">General</button>
+                    <button class="tab-btn" onclick="showSettingsTab('notifications')">Notifications</button>
+                    <button class="tab-btn" onclick="showSettingsTab('privacy')">Privacy</button>
+                    <button class="tab-btn" onclick="showSettingsTab('security')">Security</button>
+                </div>
+                
+                <!-- General Tab -->
+                <div id="generalTab" class="tab-content active">
+                    <h4>General Settings</h4>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="darkMode"> Enable Dark Mode
+                        </label>
+                        <small>Switch to dark theme for better viewing in low light</small>
+                    </div>
+                    <div class="setting-item">
+                        <label class="setting-label">Language</label>
+                        <select class="form-select">
+                            <option value="en">English</option>
+                            <option value="hi">Hindi</option>
+                            <option value="ta">Tamil</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label class="setting-label">Timezone</label>
+                        <select class="form-select">
+                            <option value="IST">India Standard Time (IST)</option>
+                            <option value="UTC">Coordinated Universal Time (UTC)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Notifications Tab -->
+                <div id="notificationsTab" class="tab-content">
+                    <h4>Notification Settings</h4>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="emailNotifications" checked> Email Notifications
+                        </label>
+                        <small>Receive notifications via email</small>
+                    </div>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="pushNotifications" checked> Browser Notifications
+                        </label>
+                        <small>Show desktop notifications</small>
+                    </div>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="activityUpdates" checked> Activity Updates
+                        </label>
+                        <small>Notify when activities are approved/rejected</small>
+                    </div>
+                </div>
+                
+                <!-- Privacy Tab -->
+                <div id="privacyTab" class="tab-content">
+                    <h4>Privacy Settings</h4>
+                    <div class="setting-item">
+                        <label class="setting-label">Profile Visibility</label>
+                        <select class="form-select">
+                            <option value="public">Public</option>
+                            <option value="institution">Institution Only</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </div>
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="showInDirectory"> Show in Student Directory
+                        </label>
+                        <small>Allow other students to find your profile</small>
+                    </div>
+                </div>
+                
+                <!-- Security Tab -->
+                <div id="securityTab" class="tab-content">
+                    <h4>Security Settings</h4>
+                    <div class="setting-item">
+                        <button class="btn btn-outline" onclick="showChangePasswordModal()">
+                            <i class="fas fa-lock"></i> Change Password
+                        </button>
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn btn-outline" onclick="showTwoFactorModal()">
+                            <i class="fas fa-shield-alt"></i> Enable Two-Factor Authentication
+                        </button>
+                    </div>
+                    <div class="setting-item">
+                        <button class="btn btn-danger" onclick="showDeleteAccountModal()">
+                            <i class="fas fa-trash"></i> Delete Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" onclick="hideSettingsModal()">Close</button>
+            <button type="button" class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+        </div>
+    </div>
+</div>
+
+<!-- Help Modal -->
+<div id="helpModal" class="modal large-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2><i class="fas fa-question-circle"></i> Help & Support</h2>
+            <button class="modal-close" onclick="hideHelpModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="help-content">
+                <div class="help-search">
+                    <input type="text" placeholder="Search for help..." class="form-input">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                <div class="help-categories">
+                    <div class="help-category">
+                        <h4><i class="fas fa-rocket"></i> Getting Started</h4>
+                        <ul>
+                            <li><a href="#">How to add your first activity</a></li>
+                            <li><a href="#">Understanding approval process</a></li>
+                            <li><a href="#">Setting up your profile</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="help-category">
+                        <h4><i class="fas fa-trophy"></i> Activities</h4>
+                        <ul>
+                            <li><a href="#">Types of activities you can add</a></li>
+                            <li><a href="#">How to upload documents</a></li>
+                            <li><a href="#">Activity approval guidelines</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="help-category">
+                        <h4><i class="fas fa-file-pdf"></i> Portfolio</h4>
+                        <ul>
+                            <li><a href="#">Generating your portfolio</a></li>
+                            <li><a href="#">Sharing your portfolio</a></li>
+                            <li><a href="#">Portfolio verification</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="help-contact">
+                    <h4>Still need help?</h4>
+                    <p>Contact our support team for personalized assistance.</p>
+                    <button class="btn btn-primary" onclick="showContactModal()">
+                        Contact Support
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Confirmation Modal -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="confirmationTitle">Confirm Action</h2>
+            <button class="modal-close" onclick="hideConfirmationModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="confirmation-content">
+                <div class="confirmation-icon">
+                    <i id="confirmationIcon" class="fas fa-exclamation-triangle"></i>
+                </div>
+                <p id="confirmationMessage">Are you sure you want to perform this action?</p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline" onclick="hideConfirmationModal()">Cancel</button>
+            <button type="button" id="confirmationConfirmBtn" class="btn btn-danger" onclick="confirmAction()">Confirm</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal JavaScript -->
+<script>
+// Profile Modal Functions
+function showProfileModal() {
+    const modal = document.getElementById('profileModal');
+    modal.classList.add('show');
+    loadProfileData();
+    document.body.style.overflow = 'hidden';
+}
+
+function hideProfileModal() {
+    const modal = document.getElementById('profileModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+function loadProfileData() {
+    const user = Utils.getCurrentUser();
+    if (user) {
+        document.getElementById('profileFirstName').value = user.firstName || '';
+        document.getElementById('profileLastName').value = user.lastName || '';
+        document.getElementById('profileEmail').value = user.email || '';
+        document.getElementById('profileStudentId').value = user.studentId || '';
+        document.getElementById('profilePhone').value = user.phone || '';
+        document.getElementById('profileAddress').value = user.address || '';
+        document.getElementById('profileDepartment').value = user.department || '';
+        document.getElementById('profileYear').value = user.yearOfStudy || '';
+        
+        if (user.profileImage) {
+            document.getElementById('profileAvatar').src = user.profileImage;
+        }
+    }
+}
+
+async function saveProfile() {
+    try {
+        const formData = {
+            firstName: document.getElementById('profileFirstName').value,
+            lastName: document.getElementById('profileLastName').value,
+            phone: document.getElementById('profilePhone').value,
+            address: document.getElementById('profileAddress').value,
+            department: document.getElementById('profileDepartment').value,
+            yearOfStudy: document.getElementById('profileYear').value,
+        };
+        
+        await authManager.updateProfile(formData);
+        hideProfileModal();
+        loadUserData(); // Reload user data in header
+        
+    } catch (error) {
+        console.error('Failed to save profile:', error);
+    }
+}
+
+// Settings Modal Functions
+function showSettingsModal() {
+    const modal = document.getElementById('settingsModal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideSettingsModal() {
+    const modal = document.getElementById('settingsModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+function showSettingsTab(tabName) {
+    // Hide all tabs
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => tab.classList.remove('active'));
+    
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // Show selected tab
+    document.getElementById(tabName + 'Tab').classList.add('active');
+    event.target.classList.add('active');
+}
+
+function saveSettings() {
+    // Save settings logic
+    NotificationManager.showNotification('Settings saved successfully', 'success');
+    hideSettingsModal();
+}
+
+// Help Modal Functions
+function showHelpModal() {
+    const modal = document.getElementById('helpModal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideHelpModal() {
+    const modal = document.getElementById('helpModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+// Confirmation Modal Functions
+let confirmationCallback = null;
+
+function showConfirmationModal(title, message, confirmText = 'Confirm', callback = null) {
+    document.getElementById('confirmationTitle').textContent = title;
+    document.getElementById('confirmationMessage').textContent = message;
+    document.getElementById('confirmationConfirmBtn').textContent = confirmText;
+    
+    confirmationCallback = callback;
+    
+    const modal = document.getElementById('confirmationModal');
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideConfirmationModal() {
+    const modal = document.getElementById('confirmationModal');
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+    confirmationCallback = null;
+}
+
+function confirmAction() {
+    if (confirmationCallback) {
+        confirmationCallback();
+    }
+    hideConfirmationModal();
+}
+
+// Close modals when clicking outside
+document.addEventListener('click', function(event) {
+    const modals = document.querySelectorAll('.modal.show');
+    modals.forEach(modal => {
+        if (event.target === modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
+});
+
+// Close modals with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const modals = document.querySelectorAll('.modal.show');
+        modals.forEach(modal => {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        });
+    }
+});
+</script>

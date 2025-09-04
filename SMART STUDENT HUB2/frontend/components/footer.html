@@ -1,0 +1,177 @@
+<!-- Footer Component for Smart Student Hub -->
+<footer class="footer">
+    <div class="container">
+        <!-- Main Footer Content -->
+        <div class="footer-content">
+            <!-- About Section -->
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Smart Student Hub</span>
+                </div>
+                <p class="footer-description">
+                    Empowering students with comprehensive digital portfolios for the future of education and employment. 
+                    Track, verify, and showcase your academic journey with our innovative platform.
+                </p>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Platform</h3>
+                <ul class="footer-links">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="activities.html">Activities</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="analytics.html">Analytics</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showHelpModal()">Help Center</a></li>
+                    <li><a href="#" onclick="showFaqModal()">FAQ</a></li>
+                    <li><a href="#" onclick="showApiDocsModal()">API Documentation</a></li>
+                    <li><a href="#" onclick="showTutorialsModal()">Tutorials</a></li>
+                    <li><a href="#" onclick="showBlogModal()">Blog</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showContactModal()">Contact Us</a></li>
+                    <li><a href="#" onclick="showSupportModal()">Technical Support</a></li>
+                    <li><a href="#" onclick="showFeedbackModal()">Send Feedback</a></li>
+                    <li><a href="#" onclick="showBugReportModal()">Report Bug</a></li>
+                </ul>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@smartstudenthub.in</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 1234 567 890</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Legal -->
+            <div class="footer-section">
+                <h3 class="footer-heading">Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showPrivacyModal()">Privacy Policy</a></li>
+                    <li><a href="#" onclick="showTermsModal()">Terms of Service</a></li>
+                    <li><a href="#" onclick="showCookieModal()">Cookie Policy</a></li>
+                    <li><a href="#" onclick="showDataModal()">Data Protection</a></li>
+                </ul>
+                <div class="footer-badges">
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>SSL Secured</span>
+                    </div>
+                    <div class="security-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>GDPR Compliant</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <div class="copyright">
+                    <p>&copy; 2025 Smart Student Hub. All rights reserved.</p>
+                    <p class="made-with">Made with <i class="fas fa-heart"></i> for Indian Students</p>
+                </div>
+                <div class="footer-bottom-links">
+                    <a href="#" onclick="showAccessibilityModal()">Accessibility</a>
+                    <a href="#" onclick="showSitemapModal()">Sitemap</a>
+                    <a href="#" onclick="showStatusModal()">System Status</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <button id="backToTopBtn" class="back-to-top" onclick="scrollToTop()" title="Back to top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+</footer>
+
+<!-- Footer JavaScript -->
+<script>
+// Back to top functionality
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Show/hide back to top button
+function toggleBackToTop() {
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+    } else {
+        backToTopBtn.classList.remove('show');
+    }
+}
+
+// Footer modal functions (placeholders)
+function showHelpModal() {
+    console.log('Help modal');
+    // Implementation would show help modal
+}
+
+function showFaqModal() {
+    console.log('FAQ modal');
+}
+
+function showApiDocsModal() {
+    console.log('API Documentation modal');
+}
+
+function showContactModal() {
+    console.log('Contact modal');
+}
+
+function showPrivacyModal() {
+    console.log('Privacy Policy modal');
+}
+
+function showTermsModal() {
+    console.log('Terms of Service modal');
+}
+
+// Add scroll event listener
+window.addEventListener('scroll', toggleBackToTop);
+
+// Initialize footer
+document.addEventListener('DOMContentLoaded', function() {
+    // Add any footer initialization code here
+    console.log('Footer loaded');
+});
+</script>

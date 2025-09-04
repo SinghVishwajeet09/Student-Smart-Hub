@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities - Smart Student Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="dashboard-page">
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Smart Student Hub</span>
+                </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="activities.html" class="active"><i class="fas fa-trophy"></i> Activities</a></li>
+                        <li><a href="portfolio.html"><i class="fas fa-file-alt"></i> Portfolio</a></li>
+                        <li><a href="analytics.html"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    </ul>
+                </nav>
+                <div class="header-actions">
+                    <div class="notification-icon" onclick="toggleNotifications()">
+                        <i class="fas fa-bell"></i>
+                        <span id="notificationBadge" class="notification-badge">0</span>
+                    </div>
+                    <div class="user-menu">
+                        <div class="user-avatar" onclick="toggleUserMenu()">
+                            <img id="userAvatar" src="https://via.placeholder.com/40" alt="User Avatar">
+                            <span id="userName">Student</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div id="userDropdown" class="user-dropdown">
+                            <a href="#" onclick="showProfileModal()"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#" onclick="showSettingsModal()"><i class="fas fa-cog"></i> Settings</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Page Header -->
+            <section class="page-header">
+                <div class="page-header-content">
+                    <div class="page-title-section">
+                        <h1><i class="fas fa-trophy"></i> My Activities</h1>
+                        <p>Manage your academic and extracurricular activities</p>
+                    </div>
+                    <div class="page-actions">
+                        <button class="btn btn-primary" onclick="showAddActivityModal()">
+                            <i class="fas fa-plus"></i> Add New Activity
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activities Overview -->
+            <section class="activities-overview">
+                <div class="overview-cards">
+                    <div class="overview-card">
+                        <div class="card-icon">
+                            <i class="fas fa-list"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 id="totalActivitiesCount">0</h3>
+                            <p>Total Activities</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="card-icon approved">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 id="approvedActivitiesCount">0</h3>
+                            <p>Approved</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="card-icon pending">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 id="pendingActivitiesCount">0</h3>
+                            <p>Pending Review</p>
+                        </div>
+                    </div>
+                    <div class="overview-card">
+                        <div class="card-icon points">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="card-content">
+                            <h3 id="totalPointsCount">0</h3>
+                            <p>Points Earned</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filters and Search -->
+            <section class="activities-controls">
+                <div class="controls-left">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="activitySearch" placeholder="Search activities...">
+                    </div>
+                    <div class="filter-dropdown">
+                        <button class="btn btn-outline dropdown-toggle" onclick="toggleFilterDropdown()">
+                            <i class="fas fa-filter"></i> Filter
+                        </button>
+                        <div id="filterDropdown" class="dropdown-menu">
+                            <a href="#" onclick="filterActivities('all')" class="active">All Activities</a>
+                            <a href="#" onclick="filterActivities('approved')">Approved</a>
+                            <a href="#" onclick="filterActivities('pending')">Pending</a>
+                            <a href="#" onclick="filterActivities('rejected')">Rejected</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" onclick="filterActivities('academic')">Academic</a>
+                            <a href="#" onclick="filterActivities('technical')">Technical</a>
+                            <a href="#" onclick="filterActivities('cultural')">Cultural</a>
+                            <a href="#" onclick="filterActivities('sports')">Sports</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="controls-right">
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid" onclick="setViewMode('grid')">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list" onclick="setViewMode('list')">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                    <div class="sort-dropdown">
+                        <select id="sortActivities" onchange="sortActivities(this.value)">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="title">Title A-Z</option>
+                            <option value="status">Status</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Activities Grid -->
+            <section class="activities-section">
+                <div id="activitiesGrid" class="activities-grid">
+                    <!-- Loading placeholder -->
+                    <div class="loading-placeholder">
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                        <div class="skeleton-card"></div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <div id="paginationContainer" class="pagination-container" style="display: none;">
+                    <div class="pagination">
+                        <button class="pagination-btn" id="prevPageBtn" onclick="previousPage()">
+                            <i class="fas fa-chevron-left"></i> Previous
+                        </button>
+                        <div id="pageNumbers" class="page-numbers"></div>
+                        <button class="pagination-btn" id="nextPageBtn" onclick="nextPage()">
+                            Next <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Include the modals from dashboard.html -->
+    <!-- Add Activity Modal -->
+    <div id="addActivityModal" class="modal large-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-plus"></i> Add New Activity</h2>
+                <button class="modal-close" onclick="hideAddActivityModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="addActivityForm" class="activity-form" enctype="multipart/form-data">
+                <div class="form-step active" data-step="1">
+                    <h3>Basic Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="activityTitle">Activity Title *</label>
+                            <input type="text" id="activityTitle" name="title" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="activityType">Activity Type *</label>
+                            <select id="activityType" name="activityType" required class="form-select">
+                                <option value="">Select type</option>
+                                <option value="academic">Academic</option>
+                                <option value="extracurricular">Extracurricular</option>
+                                <option value="sports">Sports</option>
+                                <option value="cultural">Cultural</option>
+                                <option value="technical">Technical</option>
+                                <option value="social_service">Social Service</option>
+                                <option value="internship">Internship</option>
+                                <option value="certification">Certification</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="activityDescription">Description *</label>
+                        <textarea id="activityDescription" name="description" required class="form-textarea" placeholder="Describe your activity, role, and key outcomes..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="2">
+                    <h3>Activity Details</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="startDate">Start Date *</label>
+                            <input type="date" id="startDate" name="startDate" required class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">End Date</label>
+                            <input type="date" id="endDate" name="endDate" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="durationHours">Duration (Hours)</label>
+                            <input type="number" id="durationHours" name="durationHours" min="1" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="venue">Venue</label>
+                            <input type="text" id="venue" name="venue" class="form-input">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="organizer">Organizer</label>
+                            <input type="text" id="organizer" name="organizer" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="roleInActivity">Your Role</label>
+                            <input type="text" id="roleInActivity" name="roleInActivity" placeholder="e.g., Participant, Organizer, Speaker" class="form-input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-step" data-step="3">
+                    <h3>Achievements & Skills</h3>
+                    <div class="form-group">
+                        <label for="achievement">Achievement/Award</label>
+                        <input type="text" id="achievement" name="achievement" placeholder="e.g., First Place, Certificate of Excellence" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="skillsGained">Skills Gained</label>
+                        <input type="text" id="skillsGained" name="skillsGained" placeholder="e.g., Leadership, Public Speaking, Programming" class="form-input">
+                        <small>Separate multiple skills with commas</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="documents">Upload Documents</label>
+                        <div class="file-upload-area">
+                            <input type="file" id="documents" name="documents" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                            <div class="file-upload-content">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag & drop files here or click to browse</p>
+                                <small>Supported: PDF, DOC, DOCX, JPG, PNG (Max 10MB each)</small>
+                            </div>
+                        </div>
+                        <div id="selectedFiles" class="selected-files"></div>
+                    </div>
+                </div>
+
+                <div class="form-navigation">
+                    <button type="button" id="prevStepBtn" class="btn btn-outline" onclick="previousStep()" style="display: none;">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" id="nextStepBtn" class="btn btn-primary" onclick="nextStep()">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button type="submit" id="submitActivityBtn" class="btn btn-primary" style="display: none;">
+                        <i class="fas fa-save"></i> Save Activity
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Activity Details Modal -->
+    <div id="activityDetailsModal" class="modal large-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-eye"></i> Activity Details</h2>
+                <button class="modal-close" onclick="hideActivityDetailsModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="activityDetailsContent">
+                    <!-- Content will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p id="loadingText">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div id="notificationPanel" class="notification-panel">
+        <div class="notification-header">
+            <h3><i class="fas fa-bell"></i> Notifications</h3>
+            <button class="btn btn-text" onclick="markAllNotificationsRead()">
+                Mark all as read
+            </button>
+        </div>
+        <div id="notificationList" class="notification-list"></div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/activities.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/app.js"></script>
+
+    <script>
+        // Activities page specific functions
+        function toggleFilterDropdown() {
+            const dropdown = document.getElementById('filterDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        function setViewMode(mode) {
+            const buttons = document.querySelectorAll('.view-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-view="${mode}"]`).classList.add('active');
+            
+            const grid = document.getElementById('activitiesGrid');
+            grid.className = mode === 'list' ? 'activities-list' : 'activities-grid';
+        }
+
+        function sortActivities(sortBy) {
+            activityManager.sortActivities(sortBy);
+        }
+
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+             function hideActivityDetailsModal() {
+            const modal = document.getElementById('activityDetailsModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function logout() {
+            authManager.logout();
+        }
+
+        function showProfileModal() {
+            // Profile modal functionality
+            console.log('Profile modal');
+        }
+
+        function showSettingsModal() {
+            // Settings modal functionality
+            console.log('Settings modal');
+        }
+
+        // Page initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuthStatus();
+            initializeActivitiesPage();
+            loadActivitiesOverview();
+            loadActivitiesList();
+        });
+
+        function initializeActivitiesPage() {
+            // Set max date for date inputs to today
+            const today = new Date().toISOString().split('T')[0];
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => {
+                input.setAttribute('max', today);
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(event) {
+                const dropdowns = document.querySelectorAll('.dropdown-menu');
+                dropdowns.forEach(dropdown => {
+                    if (!dropdown.closest('.filter-dropdown').contains(event.target)) {
+                        dropdown.classList.remove('show');
+                    }
+                });
+
+                const userDropdown = document.getElementById('userDropdown');
+                if (userDropdown && !userDropdown.closest('.user-menu').contains(event.target)) {
+                    userDropdown.classList.remove('show');
+                }
+            });
+        }
+
+        async function loadActivitiesOverview() {
+            try {
+                const stats = await Utils.makeRequest('/activities/stats');
+                
+                document.getElementById('totalActivitiesCount').textContent = stats.total_activities || 0;
+                document.getElementById('approvedActivitiesCount').textContent = stats.approved_activities || 0;
+                document.getElementById('pendingActivitiesCount').textContent = stats.pending_activities || 0;
+                document.getElementById('totalPointsCount').textContent = stats.total_points || 0;
+                
+            } catch (error) {
+                console.error('Failed to load activities overview:', error);
+            }
+        }
+
+        async function loadActivitiesList() {
+            if (typeof activityManager !== 'undefined') {
+                await activityManager.loadActivities();
+            }
+        }
+
+        function previousPage() {
+            if (typeof activityManager !== 'undefined') {
+                activityManager.previousPage();
+            }
+        }
+
+        function nextPage() {
+            if (typeof activityManager !== 'undefined') {
+                activityManager.nextPage();
+            }
+        }
+
+        function checkAuthStatus() {
+            if (typeof authManager !== 'undefined') {
+                authManager.checkAuthStatus();
+            }
+        }
+    </script>
+</body>
+</html>
